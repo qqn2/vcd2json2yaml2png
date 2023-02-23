@@ -66,6 +66,9 @@ class WaveExtractor:
                 line = fin.readline()
                 if not line:
                     raise EOFError('Can\'t find word "$enddefinitions".')
+                # add check for empty lines
+                if not line.strip():
+                    continue
                 words = line.split()
                 if words[0] == '$enddefinitions':
                     return path_list, path_dict

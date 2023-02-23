@@ -24,7 +24,7 @@ class WaveExtractor:
         self._vcd_file = vcd_file
         self._json_file = json_file
         self._path_list = [path.strip('/') for path in path_list]
-        self._wave_chunk = 20
+        self._wave_chunk = 100
         self._start_time = 0
         self._end_time = 0
         self._setup()

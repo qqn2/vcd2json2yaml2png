@@ -1,6 +1,7 @@
 import json
 import yaml
 import sys
+from vcd2json import WaveExtractor
 
 # This function parses the JSON data and extracts the "name","wave" and "data" fields
 # of each signal, ignoring empty lists and objects without a "name" field
@@ -39,11 +40,15 @@ def traverse_dict(d, indent=0):
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
-        print("Usage: python script.py filename.json")
+        print("Usage: python script.py filename.vcd")
         sys.exit(1)
 
     filename = sys.argv[1]
-    with open(filename) as f:
+
+    extractor = WaveExtractor(filename, f"{filename.split('.')[0]}.json", [])
+    extractor.execute()
+
+    with open(f"{filename.split('.')[0]}.json") as f:
         data = json.load(f)
 
     signals = data.get("signal", [])

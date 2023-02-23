@@ -56,6 +56,7 @@ if __name__ == "__main__":
     result = parse_json(signals)
 
     yaml_data = traverse_dict(result)
+    yaml_data += "config:\n  hscale: 0.1\n"
 
     # write to file
     with open(f"{filename.split('.')[0]}.yaml", 'w') as yaml_file:

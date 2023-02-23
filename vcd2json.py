@@ -167,7 +167,6 @@ class WaveExtractor:
             origin = sampler.run(fin, clock_id, value_dict, sample_dict)
             if len(sample_dict[clock_id]) == 0:
                 break
-            fout.write(",\n");
             fout.write(jsongen.create_body(origin, sample_dict))
 
         fout.write(jsongen.create_footer())
@@ -248,7 +247,6 @@ class _JsonGenerator():
         wave = "\"{0}\"".format('p' + '.' * (self._wave_chunk - 1))
         json = ""
         json += "{ \"signal\": [\n"
-        json += "  {   \"name\": "+name+", \"wave\": "+wave+" }"
         return json
 
     def create_body(self, origin, sample_dict):
